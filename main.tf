@@ -1,7 +1,9 @@
 provider "aws" {
   region     = "eu-west-2"
-  access_key = "AKIAVRVUFPRLUPDEVNJG"
-  secret_key = "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"
+}
+
+variable "subnet_cidr_block" {
+  description =   "subnet_cidr_block"
 }
 
 resource "aws_vpc" "development-vpc" {
@@ -14,7 +16,7 @@ resource "aws_vpc" "development-vpc" {
 
 resource "aws_subnet" "dev-subnet-1" {
   vpc_id     = aws_vpc.development-vpc.id
-  cidr_block = "10.0.10.0/24"
+  cidr_block = var.subnet_cidr_block
   availability_zone = "eu-west-2a"
 }
 
